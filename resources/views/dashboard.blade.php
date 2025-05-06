@@ -211,7 +211,7 @@
                 </div>
             </div>
 
-            <h1 class="text-2xl font-semibold mb-1 animate-fade-in">Selamat Pagi, Ahmad Rafi Fadhilah</h1>
+            <h1 class="text-2xl font-semibold mb-1 animate-fade-in">Selamat Pagi, Rai</h1>
             <p class="text-gray-600 mb-6 animate-fade-in animate-delay-1">
                 <span id="current-date">Senin, 02 Mei 2025</span> | 
                 <span id="current-time" class="font-medium">08:15 WIB</span>
@@ -499,13 +499,13 @@
 
             <!-- Quick Actions -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-1">
+                <a href="/qr-scanner"><div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-1">
                     <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-primary-dark transition duration-200">
                         <i class="fa-solid fa-qrcode"></i>
                     </div>
                     <div class="font-medium text-center group-hover:text-purple-600 transition duration-200">Scan QR</div>
                     <div class="text-xs text-gray-500">Scan QR untuk presensi</div>
-                </div>
+                </div></a>
                 <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-1">
                     <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-green-600 transition duration-200">
                         <i class="fa-solid fa-file-export"></i>
@@ -540,14 +540,7 @@
                     </div>
                     <div class="font-medium text-center group-hover:text-inherit transition duration-200">Presensi</div>
                     <div class="text-xs text-gray-500">Lihat riwayat kehadiran</div>
-            </div>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-3">
-                    <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-red-600 transition duration-200">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-red-500 transition duration-200">Hukuman</div>
-                    <div class="text-xs text-gray-500">Lihat riwayat hukuman</div>
-                </div>
+               </div>
                 <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-3">
                     <div class="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-emerald-700 transition duration-200">
                     <i class="fa-solid fa-book-open"></i>
