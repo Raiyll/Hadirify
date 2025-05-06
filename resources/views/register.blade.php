@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - Hadirify | Sistem Absensi Modern</title>
+  <title>Register - Hadirify | Sistem Absensi Modern</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
@@ -54,6 +54,30 @@
       25% { transform: rotate(2deg); }
       75% { transform: rotate(-2deg); }
     }
+    .password-strength {
+      height: 4px;
+      transition: all 0.3s ease;
+    }
+    .strength-0 {
+      width: 0%;
+      background-color: #ef4444;
+    }
+    .strength-1 {
+      width: 25%;
+      background-color: #ef4444;
+    }
+    .strength-2 {
+      width: 50%;
+      background-color: #f59e0b;
+    }
+    .strength-3 {
+      width: 75%;
+      background-color: #3b82f6;
+    }
+    .strength-4 {
+      width: 100%;
+      background-color: #10b981;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-gray-50 font-sans antialiased" style="font-family: 'Inter', sans-serif;">
@@ -86,7 +110,7 @@
           </div>
           
           <p class="text-lg text-indigo-100 mt-6 max-w-xs leading-relaxed animate__animated animate__fadeIn animate__delay-1s">
-            Sistem absensi digital modern untuk institusi pendidikan yang efisien
+            Bergabunglah dengan sistem absensi digital modern kami
           </p>
         </div>
         
@@ -94,38 +118,41 @@
         <div class="mt-12 space-y-6">
           <div class="flex items-start space-x-4 group animate__animated animate__fadeInUp animate__delay-1s">
             <div class="flex-shrink-0 mt-1 group-hover:bg-white group-hover:bg-opacity-20 transition-all duration-300 p-2 rounded-lg">
-              <i data-feather="clock" class="h-5 w-5 group-hover:scale-110 transition-transform"></i>
+              <i data-feather="user-plus" class="h-5 w-5 group-hover:scale-110 transition-transform"></i>
             </div>
             <div class="group-hover:translate-x-1 transition-transform">
-              <h3 class="font-medium text-lg">Absensi Cepat</h3>
-              <p class="mt-1 text-indigo-100 text-sm">Proses kehadiran dalam hitungan detik dengan scan QR</p>
+              <h3 class="font-medium text-lg">Daftar dengan Mudah</h3>
+              <p class="mt-1 text-indigo-100 text-sm">Proses pendaftaran cepat dan sederhana</p>
             </div>
           </div>
           
           <div class="flex items-start space-x-4 group animate__animated animate__fadeInUp animate__delay-2s">
             <div class="flex-shrink-0 mt-1 group-hover:bg-white group-hover:bg-opacity-20 transition-all duration-300 p-2 rounded-lg">
-              <i data-feather="bar-chart-2" class="h-5 w-5 group-hover:scale-110 transition-transform"></i>
+              <i data-feather="shield" class="h-5 w-5 group-hover:scale-110 transition-transform"></i>
             </div>
             <div class="group-hover:translate-x-1 transition-transform">
-              <h3 class="font-medium text-lg">Analitik Lengkap</h3>
-              <p class="mt-1 text-indigo-100 text-sm">Pantau statistik kehadiran dengan dashboard real-time</p>
+              <h3 class="font-medium text-lg">Keamanan Terjamin</h3>
+              <p class="mt-1 text-indigo-100 text-sm">Data Anda dilindungi dengan enkripsi terbaik</p>
             </div>
           </div>
           
           <div class="flex items-start space-x-4 group animate__animated animate__fadeInUp animate__delay-3s">
             <div class="flex-shrink-0 mt-1 group-hover:bg-white group-hover:bg-opacity-20 transition-all duration-300 p-2 rounded-lg">
-              <i data-feather="smartphone" class="h-5 w-5 group-hover:scale-110 transition-transform"></i>
+              <i data-feather="zap" class="h-5 w-5 group-hover:scale-110 transition-transform"></i>
             </div>
             <div class="group-hover:translate-x-1 transition-transform">
-              <h3 class="font-medium text-lg">Dimanapun, Kapanpun</h3>
-              <p class="mt-1 text-indigo-100 text-sm">Akses sistem dari perangkat apapun dengan responsive design</p>
+              <h3 class="font-medium text-lg">Akses Cepat</h3>
+              <p class="mt-1 text-indigo-100 text-sm">Mulai gunakan sistem segera setelah mendaftar</p>
             </div>
           </div>
         </div>
         
         <!-- Footer -->
         <div class="mt-auto pt-16 relative z-10 animate__animated animate__fadeIn animate__delay-2s">
-          <p class="text-sm text-indigo-200">&copy; 2025 Hadirify. Semua hak dilindungi.</p>
+          <p class="text-sm text-indigo-200">Sudah punya akun? 
+            <a href="login.html" class="font-medium text-white hover:underline transition-all">Masuk disini</a>
+          </p>
+          <p class="text-sm text-indigo-200 mt-1">&copy; 2025 Hadirify. Semua hak dilindungi.</p>
         </div>
       </div>
       
@@ -133,15 +160,15 @@
       <div class="md:w-7/12 p-4 sm:p-8 animate__animated animate__fadeInRight">
         <div class="max-w-md mx-auto py-4 md:py-8">
           <div class="text-center md:text-left transform hover:scale-[1.01] transition-transform duration-300">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Selamat Datang Kembali</h2>
-            <p class="mt-2 text-gray-600">Silahkan masuk ke akun Anda untuk melanjutkan</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Buat Akun Baru</h2>
+            <p class="mt-2 text-gray-600">Isi formulir berikut untuk mendaftar</p>
           </div>
           
           <div class="mt-8 space-y-6">
             <!-- Role Selection -->
             <div class="animate__animated animate__fadeIn animate__delay-1s">
-              <label class="block text-sm font-medium text-gray-700 mb-2">Masuk sebagai</label>
-              <div class="grid grid-cols-3 gap-3" x-data="{ role: 'siswa' }">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Daftar sebagai</label>
+              <div class="grid grid-cols-3 gap-3">
                 <div id="role-siswa" 
                      class="flex flex-col items-center justify-center py-3 px-4 border-2 border-purple-500 bg-purple-50 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-md hover:bg-purple-100 hover:border-purple-600"
                      onclick="selectRole('siswa')">
@@ -166,18 +193,44 @@
               <input type="hidden" id="role" name="role" value="siswa">
             </div>
             
-            <!-- Login Form -->
-            <form action="{{ route('post.login') }}" method="POST" class="space-y-4 mt-8 animate__animated animate__fadeIn animate__delay-2s">
-              @csrf
+            <!-- Register Form -->
+            <form class="space-y-4 mt-8 animate__animated animate__fadeIn animate__delay-2s">
+              <!-- Nama Lengkap -->
               <div class="transform transition-all hover:scale-[1.01]">
-                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                <label for="fullname" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
                 <div class="relative rounded-md shadow-sm">
                   <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <i data-feather="user" class="h-5 w-5 text-gray-400 hover:text-indigo-500 transition-colors"></i>
                   </div>
-                  <input type="text" id="username" name="name" 
+                  <input type="text" id="fullname" name="fullname" 
                          class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-all duration-300 hover:border-indigo-300" 
                          placeholder="Masukkan nama lengkap Anda">
+                </div>
+              </div>
+              
+              <!-- Email -->
+              <div class="transform transition-all hover:scale-[1.01]">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <div class="relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i data-feather="mail" class="h-5 w-5 text-gray-400 hover:text-indigo-500 transition-colors"></i>
+                  </div>
+                  <input type="email" id="email" name="email" 
+                         class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-all duration-300 hover:border-indigo-300" 
+                         placeholder="Masukkan alamat email Anda">
+                </div>
+              </div>
+              
+              <!-- NIS/NIP -->
+              <div id="nis-container" class="transform transition-all hover:scale-[1.01]">
+                <label for="nis" class="block text-sm font-medium text-gray-700 mb-1">NIS</label>
+                <div class="relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i data-feather="id" class="h-5 w-5 text-gray-400 hover:text-indigo-500 transition-colors"></i>
+                  </div>
+                  <input type="text" id="nis" name="nis" 
+                         class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-all duration-300 hover:border-indigo-300" 
+                         placeholder="Masukkan NIS Anda">
                 </div>
               </div>
               
@@ -230,28 +283,53 @@
                   </div>
                   <input type="password" id="password" name="password" 
                          class="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-all duration-300 hover:border-indigo-300" 
-                         placeholder="Masukkan password Anda">
+                         placeholder="Buat password yang kuat"
+                         oninput="checkPasswordStrength(this.value)">
                   <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
                     <button type="button" onclick="togglePassword()" class="focus:outline-none hover:scale-110 transition-transform">
                       <i id="eye-icon" data-feather="eye" class="h-5 w-5 text-gray-400 hover:text-indigo-600"></i>
                     </button>
                   </div>
                 </div>
+                <!-- Password strength meter -->
+                <div class="mt-1 flex space-x-1">
+                  <div id="strength-1" class="password-strength strength-0 rounded-full"></div>
+                  <div id="strength-2" class="password-strength strength-0 rounded-full"></div>
+                  <div id="strength-3" class="password-strength strength-0 rounded-full"></div>
+                  <div id="strength-4" class="password-strength strength-0 rounded-full"></div>
+                </div>
+                <p id="password-feedback" class="mt-1 text-xs text-gray-500"></p>
               </div>
               
-              <!-- Remember Me & Forgot Password -->
-              <div class="flex items-center justify-between animate__animated animate__fadeIn animate__delay-3s">
-                <div class="flex items-center">
-                  <input id="remember-me" name="remember-me" type="checkbox" 
-                         class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded transition-all hover:scale-110">
-                  <label for="remember-me" class="ml-2 block text-sm text-gray-700 hover:text-gray-900 transition-colors">
-                    Ingat saya
-                  </label>
+              <!-- Confirm Password Field -->
+              <div class="transform transition-all hover:scale-[1.01]">
+                <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
+                <div class="relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i data-feather="lock" class="h-5 w-5 text-gray-400 hover:text-indigo-500 transition-colors"></i>
+                  </div>
+                  <input type="password" id="confirm-password" name="confirm-password" 
+                         class="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition-all duration-300 hover:border-indigo-300" 
+                         placeholder="Ketik ulang password Anda">
+                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <button type="button" onclick="toggleConfirmPassword()" class="focus:outline-none hover:scale-110 transition-transform">
+                      <i id="confirm-eye-icon" data-feather="eye" class="h-5 w-5 text-gray-400 hover:text-indigo-600"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="text-sm">
-                  <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors hover:underline">
-                    Lupa password?
-                  </a>
+                <p id="confirm-feedback" class="mt-1 text-xs text-gray-500"></p>
+              </div>
+              
+              <!-- Terms and Conditions -->
+              <div class="flex items-start animate__animated animate__fadeIn animate__delay-3s">
+                <div class="flex items-center h-5">
+                  <input id="terms" name="terms" type="checkbox" 
+                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded transition-all hover:scale-110">
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="terms" class="font-medium text-gray-700 hover:text-gray-900 transition-colors">
+                    Saya menyetujui <a href="#" class="text-indigo-600 hover:text-indigo-500 hover:underline">Syarat & Ketentuan</a> dan <a href="#" class="text-indigo-600 hover:text-indigo-500 hover:underline">Kebijakan Privasi</a>
+                  </label>
                 </div>
               </div>
               
@@ -259,35 +337,20 @@
               <div class="animate__animated animate__fadeIn animate__delay-4s">
                 <button type="submit" 
                         class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 hover:shadow-lg pulse-hover">
-                  <i data-feather="log-in" class="h-5 w-5 mr-2"></i>
-                  Masuk Sekarang
+                  <i data-feather="user-plus" class="h-5 w-5 mr-2"></i>
+                  Daftar Sekarang
                 </button>
               </div>
             </form>
-
-            <div class="animate__animated animate__fadeIn animate__delay-4s">
-              <button type="submit" 
-                      class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 hover:shadow-lg pulse-hover">
-                <i data-feather="log-in" class="h-5 w-5 mr-2" href="dasboard.blade.php"></i>
-                Register
-              </button>
-            </div>
             
-            <!-- Footer Links -->
-            <div class="mt-10 pt-6 border-t border-gray-200 animate__animated animate__fadeIn animate__delay-5s">
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <p class="text-xs text-gray-500 hover:text-gray-700 transition-colors">
-                  Dengan masuk, Anda menyetujui Ketentuan Layanan dan Kebijakan Privasi kami.
-                </p>
-                <div class="mt-3 sm:mt-0 flex space-x-4">
-                  <a href="#" class="text-gray-400 hover:text-indigo-600 transition-colors hover:animate-pulse">
-                    <i data-feather="help-circle" class="h-5 w-5"></i>
-                  </a>
-                  <a href="#" class="text-gray-400 hover:text-indigo-600 transition-colors hover:animate-pulse">
-                    <i data-feather="info" class="h-5 w-5"></i>
-                  </a>
-                </div>
-              </div>
+            <!-- Login Link -->
+            <div class="mt-6 text-center animate__animated animate__fadeIn animate__delay-5s">
+              <p class="text-sm text-gray-600">
+                Sudah punya akun? 
+                <a href="login.html" class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors hover:underline">
+                  Masuk disini
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -402,17 +465,20 @@
     
       const jurusanContainer = document.getElementById('jurusan-container');
       const kelasContainer = document.getElementById('kelas-container');
+      const nisContainer = document.getElementById('nis-container');
       
       if (role === 'siswa') {
-        gsap.to([jurusanContainer, kelasContainer], {
+        gsap.to([jurusanContainer, kelasContainer, nisContainer], {
           duration: 0.4,
           display: 'block',
           opacity: 1,
           height: 'auto',
           ease: "power2.out"
         });
+        document.querySelector('label[for="nis"]').textContent = 'NIS';
+        document.getElementById('nis').placeholder = 'Masukkan NIS Anda';
       } else if (role === 'guru') {
-        gsap.to(jurusanContainer, {
+        gsap.to([jurusanContainer, nisContainer], {
           duration: 0.4,
           display: 'block',
           opacity: 1,
@@ -426,8 +492,10 @@
           height: 0,
           ease: "power2.out"
         });
+        document.querySelector('label[for="nis"]').textContent = 'NIP';
+        document.getElementById('nis').placeholder = 'Masukkan NIP Anda';
       } else if (role === 'admin') {
-        gsap.to([jurusanContainer, kelasContainer], {
+        gsap.to([jurusanContainer, kelasContainer, nisContainer], {
           duration: 0.3,
           display: 'none',
           opacity: 0,
@@ -469,11 +537,119 @@
       });
     }
 
+    function toggleConfirmPassword() {
+      const confirmInput = document.getElementById('confirm-password');
+      const eyeIcon = document.getElementById('confirm-eye-icon');
+      
+      // Animate the eye icon
+      gsap.to(eyeIcon, {
+        duration: 0.2,
+        scale: 0.8,
+        onComplete: function() {
+          if (confirmInput.type === 'password') {
+            confirmInput.type = 'text';
+            eyeIcon.setAttribute('data-feather', 'eye-off');
+          } else {
+            confirmInput.type = 'password';
+            eyeIcon.setAttribute('data-feather', 'eye');
+          }
+          feather.replace();
+          
+          gsap.to(eyeIcon, {
+            duration: 0.2,
+            scale: 1.1
+          });
+          
+          gsap.to(eyeIcon, {
+            duration: 0.1,
+            scale: 1,
+            delay: 0.1
+          });
+        }
+      });
+    }
+
+    function checkPasswordStrength(password) {
+      let strength = 0;
+      const feedback = document.getElementById('password-feedback');
+      
+      if (password.length >= 8) strength++;
+      if (password.length >= 12) strength++;
+      
+      if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+      
+      if (/\d/.test(password)) strength++;
+      
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+      
+      strength = Math.min(strength, 4);
+      
+      for (let i = 1; i <= 4; i++) {
+        const bar = document.getElementById(`strength-${i}`);
+        if (i <= strength) {
+          bar.classList.remove('strength-0');
+          if (strength <= 2) {
+            bar.classList.add('strength-1');
+          } else if (strength === 3) {
+            bar.classList.add('strength-2');
+          } else {
+            bar.classList.add('strength-3');
+          }
+        } else {
+          bar.classList.remove('strength-1', 'strength-2', 'strength-3');
+          bar.classList.add('strength-0');
+        }
+      }
+      
+      if (password.length === 0) {
+        feedback.textContent = '';
+      } else if (strength <= 1) {
+        feedback.textContent = 'Password terlalu lemah';
+        feedback.className = 'mt-1 text-xs text-red-500';
+      } else if (strength <= 2) {
+        feedback.textContent = 'Password cukup';
+        feedback.className = 'mt-1 text-xs text-yellow-500';
+      } else if (strength <= 3) {
+        feedback.textContent = 'Password kuat';
+        feedback.className = 'mt-1 text-xs text-blue-500';
+      } else {
+        feedback.textContent = 'Password sangat kuat!';
+        feedback.className = 'mt-1 text-xs text-green-500';
+      }
+      
+      // Check password match if confirm field has value
+      const confirmPassword = document.getElementById('confirm-password').value;
+      if (confirmPassword.length > 0) {
+        checkPasswordMatch(password, confirmPassword);
+      }
+    }
+
+    function checkPasswordMatch(password, confirmPassword) {
+      const feedback = document.getElementById('confirm-feedback');
+      
+      if (confirmPassword.length === 0) {
+        feedback.textContent = '';
+      } else if (password !== confirmPassword) {
+        feedback.textContent = 'Password tidak cocok';
+        feedback.className = 'mt-1 text-xs text-red-500';
+      } else {
+        feedback.textContent = 'Password cocok';
+        feedback.className = 'mt-1 text-xs text-green-500';
+      }
+    }
+
     // Initialize the form based on default role
     selectRole('siswa');
     
+    // Add event listener for confirm password field
+    document.getElementById('confirm-password').addEventListener('input', function() {
+      const password = document.getElementById('password').value;
+      checkPasswordMatch(password, this.value);
+    });
+    
     // Add animation to form submission
     document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
       const button = this.querySelector('button[type="submit"]');
       gsap.to(button, {
         duration: 0.3,
@@ -481,6 +657,12 @@
         backgroundColor: '#4338ca',
         ease: "power2.out"
       });
+      
+      // Here you would typically submit the form data
+      // For demo purposes, we'll show a success message
+      setTimeout(() => {
+        alert('Pendaftaran berhasil! Silakan cek email Anda untuk verifikasi.');
+      }, 1000);
     });
   </script>
 </body>
