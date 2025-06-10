@@ -4,608 +4,489 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Hadirify | Sistem Absensi Digital</title>
-    <!-- Tailwind CSS -->
+    <link rel="icon" href="/hadirify-logo.jpg" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes slideInLeft {
-            from { transform: translateX(-20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        @keyframes fadeScale {
+            0% { opacity: 0; transform: scale(0.94); }
+            100% { opacity: 1; transform: scale(1); }
         }
         
-        .bg-primary {
-            background-color: #6c5ce7;
-        }
-        .bg-primary-dark {
-            background-color: #5548c9;
-        }
-        .bg-primary-light {
-            background-color: #8c7ae6;
-        }
-        .text-primary {
-            color: #6c5ce7;
-        }
-        .border-primary-light {
-            border-color: #8c7ae6;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
         }
         
-        .animate-delay-1 {
-            animation-delay: 0.1s;
+        /* Custom styles */
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(circle at 10% 90%, rgba(225, 232, 250, 0.4) 10%, transparent 20%),
+                radial-gradient(circle at 90% 10%, rgba(225, 232, 250, 0.4) 10%, transparent 20%);
+            background-size: 100px 100px;
         }
         
-        .animate-delay-2 {
-            animation-delay: 0.2s;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
-        .animate-delay-3 {
-            animation-delay: 0.3s;
+        .animated-card {
+            animation: fadeScale 0.5s ease-out forwards;
         }
         
-        .hover-scale {
-            transition: transform 0.2s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.02);
-        }
-        
-        .card-hover {
+        .card-gradient {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-top: 3px solid transparent;
             transition: all 0.3s ease;
         }
         
-        .card-hover:hover {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            transform: translateY(-5px);
+        .nav-gradient {
+            background: linear-gradient(135deg, #3a47a8 0%, #2d1a73 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
         }
         
         .sidebar-item {
-            transition: all 0.2s ease;
             position: relative;
+            transition: all 0.2s ease;
+            border-radius: 0 30px 30px 0;
+            margin-right: 8px;
+            border-left: 3px solid transparent;
         }
         
         .sidebar-item:hover {
-            background-color: #5548c9;
-        }
-        
-        .sidebar-item::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 3px;
-            background-color: white;
-            transform: scaleY(0);
-            transform-origin: center;
-            transition: transform 0.2s ease;
-        }
-        
-        .sidebar-item:hover::after {
-            transform: scaleY(1);
+            background-color: rgba(255, 255, 255, 0.15);
+            border-left-color: #ffcc29;
         }
         
         .active-sidebar-item {
-            background-color: #5548c9;
+            background-color: rgba(255, 255, 255, 0.12);
+            border-left-color: #ffcc29;
         }
         
-        .active-sidebar-item::after {
-            transform: scaleY(1);
+        .profile-badge {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
         }
         
-        .notification-badge {
+        .progress-bar {
+            position: relative;
+            height: 6px;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        .badge-anim {
             animation: pulse 2s infinite;
         }
         
-        .progress-ring {
-            transition: stroke-dashoffset 0.5s ease;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
+        .stat-icon {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        .label-style {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .chart-animate {
+            animation: slideUp 0.8s ease-out forwards;
+        }
+        
+        .floating-button {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .floating-button:hover {
+            transform: translateY(-4px) scale(1.05);
+        }
+        
+        .card-accent {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(58, 71, 168, 0.1) 0%, rgba(45, 26, 115, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card-accent:hover::before {
+            opacity: 1;
+        }
+        
+        .schedule-item {
+            transition: all 0.2s ease;
+        }
+        
+        .schedule-item:hover {
+            padding-left: 12px;
+        }
+        
+        .time-badge {
+            background: #edf1fd;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(58, 71, 168, 0.3);
+            border-radius: 10px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        .animate-float-1 {
+            animation: floatIn 0.5s ease-out forwards;
+        }
+        
+        .animate-float-2 {
+            animation: floatIn 0.5s ease-out 0.1s forwards;
+            opacity: 0;
+        }
+        
+        .animate-float-3 {
+            animation: floatIn 0.5s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .animate-float-4 {
+            animation: floatIn 0.5s ease-out 0.3s forwards;
+            opacity: 0;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<body class="text-gray-800">
     <div class="flex min-h-screen">
-        <!-- Sidebar -->
-        <div class="bg-primary text-white w-64 flex flex-col transition-all duration-300 ease-in-out transform hover:shadow-xl">
-            <div class="p-5 flex items-center border-b border-primary-light animate-fade-in">
-                <i class="fa-solid fa-book text-xl"></i>
-                <h2 class="text-xl ml-3 font-semibold">Hadirify</h2>
+    
+        <div class="nav-gradient text-white w-64 flex flex-col shadow-lg transform transition-all duration-500 ease-in-out z-20">
+            <div class="p-5 flex items-center border-b border-indigo-900/20 animate-float-1">
+                <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center">
+                    <img src="/img/hadirify-logo.jpg" class="h-5 w-5 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838l-2.328.996.002 1.069c0 .137.022.268.063.39L10 9.5l.002-.004a.996.996 0 00.063-.386v-1.07l.001-.002 2.328-.996a1 1 0 11.788 1.838l-1.532.655 3.257 1.392a1 1 0 00.788-1.838l-7-3 .001-.001z"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl ml-3 font-bold tracking-wide">Hadirify</h2>
             </div>
-            <div class="py-5 flex-grow">
-                <div class="sidebar-item active-sidebar-item flex items-center px-5 py-3 cursor-pointer animate-fade-in animate-delay-1">
-                    <i class="fa-solid fa-house w-5 text-center"></i>
+            <div class="py-5 flex-grow px-2 custom-scroll overflow-y-auto">
+                <div class="sidebar-item active-sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
                     <span class="ml-3">Dashboard</span>
                 </div>
-                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer animate-fade-in animate-delay-2">
-                    <i class="fa-solid fa-qrcode w-5 text-center"></i>
-                    <span class="ml-3">Absensi Scan</span>
-                </div>
-                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer animate-fade-in animate-delay-3">
-                    <i class="fa-solid fa-calendar-check w-5 text-center"></i>
+                <a href="/qr-scanner"> 
+                   <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-2">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2V5h1v1H5zM3 13a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3zm2 2v-1h1v1H5zM13 3a1 1 0 00-1 1v3a1 1 0 001 1h3a1 1 0 001-1V4a1 1 0 00-1-1h-3zm1 2v1h1V5h-1z" clip-rule="evenodd" />
+                          <path d="M11 4a1 1 0 10-2 0v1a1 1 0 002 0V4zM10 7a1 1 0 011 1v1h2a1 1 0 110 2h-3a1 1 0 01-1-1V8a1 1 0 011-1zM16 9a1 1 0 100 2 1 1 0 000-2zM9 13a1 1 0 011-1h1a1 1 0 110 2v2a1 1 0 11-2 0v-3zM7 11a1 1 0 100-2H4a1 1 0 100 2h3zM17 13a1 1 0 01-1 1h-2a1 1 0 110-2h2a1 1 0 011 1zM16 17a1 1 0 100-2h-3a1 1 0 100 2h3z" />
+                       </svg>
+                      <span class="ml-3">Absensi Scan</span>
+                    </div>
+                </a>
+                <a href="/riwayatkehadiran">
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                    </svg>
                     <span class="ml-3">Kehadiran</span>
                 </div>
-                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer animate-fade-in animate-delay-1">
-                    <i class="fa-solid fa-chart-simple w-5 text-center"></i>
+                </a>
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                    </svg>
                     <span class="ml-3">Laporan</span>
                 </div>
-                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer animate-fade-in animate-delay-2">
-                    <i class="fa-solid fa-clock-rotate-left w-5 text-center"></i>
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                    </svg>
                     <span class="ml-3">Riwayat</span>
                 </div>
-                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer animate-fade-in animate-delay-3">
-                    <i class="fa-solid fa-alert w-5 text-center"></i>
+                <a href="/hukuman">
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
                     <span class="ml-3">Hukuman</span>
                 </div>
-                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer animate-fade-in animate-delay-3">
-                    <i class="fa-solid fa-gear w-5 text-center"></i>
-                    <span class="ml-3">Pengaturan</span>
+                </a>
+               <a href="/profile"> 
+                   <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="ml-3">Pengaturan</span>
+                    </div> 
+                </a>
+                <a href="/pilihanguru">
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-5V3a1 1 0 00-1-1zm0 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-.293.707L10.707 6.293A1.001 1.001 0 0010 6z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="ml-3">Konsultasi</span>
                 </div>
+                </a>
+                
+                <div class="mt-4 mb-4 mx-3 border-t border-indigo-900/20"></div>
+                
+           
+                <div class="mb-2 px-5">
+                    <p class="text-xs font-medium text-indigo-100/60 tracking-wider uppercase">Info Sekolah</p>
+                </div>
+                
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+                    </svg>
+                    <span class="ml-3">Akademik</span>
+                </div>
+                <a href="/kalender">
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                    </svg>
+                    <span class="ml-3">Kalender</span>
+                </div>
+                </a>
+                <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-5V3a1 1 0 00-1-1zm0 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1.293.707L10.707 6.293A1.001 1.001 0 0010 6z" />
+                    </svg>
+                    <span class="ml-3">Jadwal</span>
             </div>
-            <div class="p-4 border-t border-primary-light flex items-center animate-fade-in">
-                <div class="relative">
-                <img
-                src="/img/gw.jpg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-white hover:border-primary-light transition-all duration-300">
-                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-                </div>
-                <div class="ml-3">
-                    <div class="text-sm font-semibold">Ahmad Rafi Fadhilah</div>
-                    <div class="text-xs opacity-80">Siswa</div>
+            </div>
+           
+            <div class="px-4 py-4 bg-indigo-900/20 mt-auto">
+                <div class="flex items-center">
+                    <div class="relative mr-3 animate-float-1">
+                        <img src="/img/gw.jpg" alt="Profile" class="w-10 h-10 rounded-full profile-badge object-cover">
+                        <div class="absolute -bottom-1 -right-1 bg-green-400 w-4 h-4 rounded-full border-2 border-indigo-900"></div>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="text-sm font-semibold">Ahmad Rafi Fadhilah</div>
+                        <div class="flex items-center">
+                            <div class="text-xs text-indigo-100/70">Siswa</div>
+                            <div class="ml-2 px-2 py-0.5 bg-indigo-800/30 rounded-full text-xs">Kelas XI</div>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="flex-grow p-6 overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <div class="relative w-64 animate-fade-in">
-                    <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                    <input type="text" placeholder="Cari..." class="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200">
-                </div>
-                <div class="flex items-center space-x-4 animate-fade-in">
-                    <div class="relative group">
-                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer shadow hover:bg-gray-50 transition duration-200">
-                            <i class="fa-solid fa-bell text-gray-600 group-hover:text-primary"></i>
-                            <div class="notification-badge absolute -top-1 -right-1 bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">3</div>
-                        </div>
-                        <div class="absolute hidden group-hover:block right-0 mt-2 w-72 bg-white rounded-md shadow-lg z-10 p-2 animate-fade-in">
-                            <div class="text-sm font-medium px-2 py-1">Notifikasi</div>
-                            <div class="border-t mt-1"></div>
-                            <div class="p-2 hover:bg-gray-50 rounded cursor-pointer transition duration-150">
-                                <div class="text-sm">Pengingat: Raport akan dibagikan besok</div>
-                                <div class="text-xs text-gray-500">10 menit yang lalu</div>
-                            </div>
-                            <div class="p-2 hover:bg-gray-50 rounded cursor-pointer transition duration-150">
-                                <div class="text-sm">Anda memiliki tugas yang belum dikumpulkan</div>
-                                <div class="text-xs text-gray-500">1 jam yang lalu</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer shadow hover:bg-gray-50 transition duration-200 relative">
-                        <i class="fa-solid fa-envelope text-gray-600 hover:text-primary"></i>
-                        <div class="absolute -top-1 -right-1 bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">5</div>
-                    </div>
-                    <div class="relative group">
-                        <img src="/img/gw.jpg" alt="Profile" class="w-10 h-10 rounded-full cursor-pointer border-2 border-transparent hover:border-primary transition duration-200">
-                        <div class="absolute hidden group-hover:block right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 animate-fade-in">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Pengaturan</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Keluar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h1 class="text-2xl font-semibold mb-1 animate-fade-in">Selamat Pagi, Rai</h1>
-            <p class="text-gray-600 mb-6 animate-fade-in animate-delay-1">
-                <span id="current-date">Senin, 02 Mei 2025</span> | 
-                <span id="current-time" class="font-medium">08:15 WIB</span>
-            </p>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                <div class="bg-white p-5 rounded-lg shadow card-hover animate-fade-in">
-                    <div class="flex justify-between">
-                        <div>
-                            <div class="text-gray-600 text-sm mb-1">Total Kehadiran</div>
-                            <div class="text-3xl font-semibold">85%</div>
-                            <div class="text-green-500 text-sm mt-1 flex items-center">
-                                <i class="fa-solid fa-arrow-up mr-1"></i> 2.5% dari bulan lalu
-                            </div>
-                        </div>
-                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white hover:bg-primary-dark transition duration-200">
-                            <i class="fa-solid fa-user-check"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-lg shadow card-hover animate-fade-in animate-delay-1">
-                    <div class="flex justify-between">
-                        <div>
-                            <div class="text-gray-600 text-sm mb-1">Hadir Tepat Waktu</div>
-                            <div class="text-3xl font-semibold">92%</div>
-                            <div class="text-green-500 text-sm mt-1 flex items-center">
-                                <i class="fa-solid fa-arrow-up mr-1"></i> 4.8% dari bulan lalu
-                            </div>
-                        </div>
-                        <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white hover:bg-green-600 transition duration-200">
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-green-500 h-2 rounded-full" style="width: 92%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-lg shadow card-hover animate-fade-in animate-delay-2">
-                    <div class="flex justify-between">
-                        <div>
-                            <div class="text-gray-600 text-sm mb-1">Keterlambatan</div>
-                            <div class="text-3xl font-semibold">7</div>
-                            <div class="text-red-500 text-sm mt-1 flex items-center">
-                                <i class="fa-solid fa-arrow-down mr-1"></i> 1.2% dari bulan lalu
-                            </div>
-                        </div>
-                        <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center text-white hover:bg-yellow-600 transition duration-200">
-                            <i class="fa-solid fa-hourglass-half"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-yellow-500 h-2 rounded-full" style="width: 14%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-lg shadow card-hover animate-fade-in animate-delay-3">
-                    <div class="flex justify-between">
-                        <div>
-                            <div class="text-gray-600 text-sm mb-1">Absen (Sakit/Izin)</div>
-                            <div class="text-3xl font-semibold">3</div>
-                            <div class="text-gray-500 text-sm mt-1 flex items-center">
-                                <i class="fa-solid fa-equals mr-1"></i> Sama dengan bulan lalu
-                            </div>
-                        </div>
-                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white hover:bg-blue-600 transition duration-200">
-                            <i class="fa-solid fa-calendar-xmark"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-blue-500 h-2 rounded-full" style="width: 6%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Charts and Activity -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                <div class="bg-white p-5 rounded-lg shadow lg:col-span-2 card-hover animate-fade-in">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-semibold text-lg">Grafik Kehadiran</h3>
-                        <div class="text-primary text-sm cursor-pointer hover:underline">Bulan Ini <i class="fa-solid fa-chevron-down ml-1 text-xs"></i></div>
-                    </div>
-                    <div class="w-full h-64 bg-gray-50 rounded-lg flex items-center justify-center">
-                        <svg width="100%" height="100%" viewBox="0 0 500 250" class="overflow-visible">
-                            <!-- X-axis -->
-                            <line x1="50" y1="200" x2="450" y2="200" stroke="#ddd" stroke-width="1" />
-                            
-                            <!-- Y-axis -->
-                            <line x1="50" y1="200" x2="50" y2="50" stroke="#ddd" stroke-width="1" />
-                            
-                            <!-- Grid lines -->
-                            <line x1="50" y1="170" x2="450" y2="170" stroke="#eee" stroke-width="1" stroke-dasharray="5,5" />
-                            <line x1="50" y1="140" x2="450" y2="140" stroke="#eee" stroke-width="1" stroke-dasharray="5,5" />
-                            <line x1="50" y1="110" x2="450" y2="110" stroke="#eee" stroke-width="1" stroke-dasharray="5,5" />
-                            <line x1="50" y1="80" x2="450" y2="80" stroke="#eee" stroke-width="1" stroke-dasharray="5,5" />
-                            <line x1="50" y1="50" x2="450" y2="50" stroke="#eee" stroke-width="1" stroke-dasharray="5,5" />
-                            
-                            <!-- Y-axis labels -->
-                            <text x="30" y="50" font-size="10" text-anchor="end" fill="#666">100%</text>
-                            <text x="30" y="80" font-size="10" text-anchor="end" fill="#666">80%</text>
-                            <text x="30" y="110" font-size="10" text-anchor="end" fill="#666">60%</text>
-                            <text x="30" y="140" font-size="10" text-anchor="end" fill="#666">40%</text>
-                            <text x="30" y="170" font-size="10" text-anchor="end" fill="#666">20%</text>
-                            <text x="30" y="200" font-size="10" text-anchor="end" fill="#666">0%</text>
-                            
-                            <!-- X-axis labels -->
-                            <text x="100" y="220" font-size="10" text-anchor="middle" fill="#666">Sen</text>
-                            <text x="150" y="220" font-size="10" text-anchor="middle" fill="#666">Sel</text>
-                            <text x="200" y="220" font-size="10" text-anchor="middle" fill="#666">Rab</text>
-                            <text x="250" y="220" font-size="10" text-anchor="middle" fill="#666">Kam</text>
-                            <text x="300" y="220" font-size="10" text-anchor="middle" fill="#666">Jum</text>
-                            <text x="350" y="220" font-size="10" text-anchor="middle" fill="#666">Sab</text>
-                            <text x="400" y="220" font-size="10" text-anchor="middle" fill="#666">Min</text>
-                            
-                            <!-- Data points -->
-                            <circle cx="100" cy="100" r="4" fill="#6c5ce7" class="animate-fade-in" />
-                            <circle cx="150" cy="120" r="4" fill="#6c5ce7" class="animate-fade-in animate-delay-1" />
-                            <circle cx="200" cy="80" r="4" fill="#6c5ce7" class="animate-fade-in animate-delay-2" />
-                            <circle cx="250" cy="140" r="4" fill="#6c5ce7" class="animate-fade-in animate-delay-3" />
-                            <circle cx="300" cy="110" r="4" fill="#6c5ce7" class="animate-fade-in animate-delay-1" />
-                            <circle cx="350" cy="160" r="4" fill="#6c5ce7" class="animate-fade-in animate-delay-2" />
-                            <circle cx="400" cy="90" r="4" fill="#6c5ce7" class="animate-fade-in animate-delay-3" />
-                            
-                            <!-- Line connecting points -->
-                            <polyline points="100,100 150,120 200,80 250,140 300,110 350,160 400,90" 
-                                     fill="none" stroke="#6c5ce7" stroke-width="2" stroke-linejoin="round" 
-                                     stroke-dasharray="500" stroke-dashoffset="500" class="animate-draw-line">
-                                <animate attributeName="stroke-dashoffset" from="500" to="0" dur="1.5s" fill="freeze" />
-                            </polyline>
+        <!-- MAIN CONTENT AREA -->
+        <div class="flex-grow overflow-y-auto custom-scroll">
+            <!-- Sticky Header -->
+            <div class="sticky top-0 z-10 glass-card shadow-sm backdrop-blur-lg">
+                <div class="flex justify-between items-center p-4">
+                    <div class="relative w-64 animate-float-1">
+                        <input type="text" placeholder="Cari informasi..." class="w-full py-2 pl-10 pr-4 rounded-xl bg-white/80 border-0 focus:ring-2 focus:ring-indigo-400 text-sm transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                         </svg>
                     </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-lg shadow card-hover animate-fade-in">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-semibold text-lg">Aktivitas Terbaru</h3>
-                        <div class="text-primary text-sm cursor-pointer hover:underline">Lihat Semua</div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex group">
-                            <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-white mr-3 flex-shrink-0 group-hover:bg-green-600 transition duration-200">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <div class="group-hover:translate-x-1 transition duration-200">
-                                <div class="font-medium">Absen Masuk</div>
-                                <div class="text-gray-600 text-xs">Hari ini, 06:15 WIB</div>
-                            </div>
-                        </div>
-                        <div class="flex group pt-3 border-t border-gray-200">
-                            <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white mr-3 flex-shrink-0 group-hover:bg-blue-600 transition duration-200">
-                                <i class="fa-solid fa-book"></i>
-                            </div>
-                            <div class="group-hover:translate-x-1 transition duration   -200">
-                                <div class="font-medium">Kelas Matematika</div>
-                                <div class="text-gray-600 text-xs">Hari ini, 08:00 WIB</div>
-                            </div>
-                        </div>
-                        <div class="flex group pt-3 border-t border-gray-200">
-                            <div class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center text-white mr-3 flex-shrink-0 group-hover:bg-yellow-600 transition duration-200">
-                                <i class="fa-solid fa-bell"></i>
-                            </div>
-                            <div class="group-hover:translate-x-1 transition duration-200">
-                                <div class="font-medium">Pengumuman Sekolah</div>
-                                <div class="text-gray-600 text-xs">Kemarin, 10:30 WIB</div>
+                    <div class="flex items-center space-x-3 animate-float-1">
+                        <div class="relative group">
+                            <button class="w-10 h-10 rounded-xl bg-white/90 flex items-center justify-center shadow-sm hover:bg-indigo-50 transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600 group-hover:text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                                </svg>
+                                <div class="absolute -top-1 -right-1 bg-red-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-xs badge-anim">3</div>
+                            </button>
+                            <div class="absolute hidden group-hover:block right-0 mt-2 w-72 bg-white rounded-xl shadow-lg z-10 p-2 opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200">
+                                <div class="flex items-center justify-between p-2 border-b">
+                                    <div class="text-sm font-medium">Notifikasi</div>
+                                    <div class="text-xs text-indigo-600 cursor-pointer">Tandai Semua Terbaca</div>
+                                </div>
+                                <div class="max-h-64 overflow-y-auto custom-scroll">
+                                    <div class="p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="w-2 h-2 mt-1.5 bg-indigo-500 rounded-full mr-2"></div>
+                                            <div>
+                                                <div class="text-sm">Pengingat: Raport akan dibagikan besok</div>
+                                                <div class="text-xs text-gray-500 mt-1">10 menit yang lalu</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="w-2 h-2 mt-1.5 bg-indigo-500 rounded-full mr-2"></div>
+                                            <div>
+                                                <div class="text-sm">Anda memiliki tugas yang belum dikumpulkan</div>
+                                                <div class="text-xs text-gray-500 mt-1">1 jam yang lalu</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                        <div class="flex items-start">
+                                            <div class="w-2 h-2 mt-1.5 bg-transparent rounded-full mr-2"></div>
+                                            <div>
+                                                <div class="text-sm">Pengumuman: Libur akhir semester dimulai tanggal 15</div>
+                                                <div class="text-xs text-gray-500 mt-1">Kemarin, 09:41</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Schedule and Subject Comparison -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                <div class="bg-white p-5 rounded-lg shadow lg:col-span-2 card-hover animate-fade-in">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-semibold text-lg">Jadwal Hari Ini</h3>
-                        <div class="text-primary text-sm cursor-pointer hover:underline">Lihat Mingguan</div>
+            <!-- DASHBOARD CONTENT -->
+            <div class="p-6">
+                <h1 class="text-2xl font-bold mb-6 animate-float-1">Selamat Datang, Rai!</h1>
+                
+                <!-- Stats Cards Row -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Card 1 -->
+                    <div class="glass-card rounded-xl p-5 shadow-sm animate-float-1">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-500">Kehadiran Bulan Ini</p>
+                                <p class="text-2xl font-bold mt-1">87%</p>
+                            </div>
+                            <div class="p-3 bg-indigo-100 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                        </div>
                     </div>
-                    <div class="space-y-1">
-                        <div class="flex items-center py-3 border-b border-gray-200 group hover:bg-gray-50 rounded-lg px-2 transition duration-200 cursor-pointer">
-                            <div class="w-16 text-sm font-medium group-hover:text-primary transition duration-200">07:00</div>
-                            <div class="w-3 h-3 rounded-full bg-green-500 mr-3 group-hover:scale-125 transition duration-200"></div>
-                            <div class="flex-grow">
-                                <div class="font-medium group-hover:text-primary transition duration-200">Upacara</div>
-                                <div class="text-gray-600 text-xs">Lapangan Utama</div>
+
+                    <!-- Card 2 -->
+                    <div class="glass-card rounded-xl p-5 shadow-sm animate-float-2">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-500">Deadline Tugas</p>
+                                <p class="text-xl font-bold mt-1">Matematika</p>
                             </div>
-                            <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition duration-200"></i>
+                            <div class="p-3 bg-amber-100 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
                         </div>
-                        <div class="flex items-center py-3 border-b border-gray-200 group hover:bg-gray-50 rounded-lg px-2 transition duration-200 cursor-pointer">
-                            <div class="w-16 text-sm font-medium group-hover:text-primary transition duration-200">08:00</div>
-                            <div class="w-3 h-3 rounded-full bg-primary mr-3 group-hover:scale-125 transition duration-200"></div>
-                            <div class="flex-grow">
-                                <div class="font-medium group-hover:text-primary transition duration-200">Matematika</div>
-                                <div class="text-gray-600 text-xs">Ruang 26 - Pak Dwiki</div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass-card rounded-xl p-5 shadow-sm animate-float-3">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-500">Pelajaran Selanjutnya</p>
+                                <p class="text-xl font-bold mt-1">10:00 - B. Inggris</p>
                             </div>
-                            <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition duration-200"></i>
-                        </div>
-                        <div class="flex items-center py-3 border-b border-gray-200 group hover:bg-gray-50 rounded-lg px-2 transition duration-200 cursor-pointer">
-                            <div class="w-16 text-sm font-medium group-hover:text-primary transition duration-200">10:15</div>
-                            <div class="w-3 h-3 rounded-full bg-blue-500 mr-3 group-hover:scale-125 transition duration-200"></div>
-                            <div class="flex-grow">
-                                <div class="font-medium group-hover:text-primary transition duration-200">Pemrograman Dasar</div>
-                                <div class="text-gray-600 text-xs">Ruang Lab A - Ibu Kokom</div>
+                            <div class="p-3 bg-emerald-100 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
                             </div>
-                            <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition duration-200"></i>
-                        </div>
-                        <div class="flex items-center py-3 border-b border-gray-200 group hover:bg-gray-50 rounded-lg px-2 transition duration-200 cursor-pointer">
-                            <div class="w-16 text-sm font-medium group-hover:text-primary transition duration-200">12:00</div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500 mr-3 group-hover:scale-125 transition duration-200"></div>
-                            <div class="flex-grow">
-                                <div class="font-medium group-hover:text-primary transition duration-200">Istirahat</div>
-                                <div class="text-gray-600 text-xs">Kantin Sekolah</div>
-                            </div>
-                            <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition duration-200"></i>
-                        </div>
-                        <div class="flex items-center py-3 group hover:bg-gray-50 rounded-lg px-2 transition duration-200 cursor-pointer">
-                            <div class="w-16 text-sm font-medium group-hover:text-primary transition duration-200">13:00</div>
-                            <div class="w-3 h-3 rounded-full bg-red-500 mr-3 group-hover:scale-125 transition duration-200"></div>
-                            <div class="flex-grow">
-                                <div class="font-medium group-hover:text-primary transition duration-200">Informatika</div>
-                                <div class="text-gray-600 text-xs">Lab Informatika - Sensei Dyah Nur</div>
-                            </div>
-                            <i class="fa-solid fa-chevron-right text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition duration-200"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-5 rounded-lg shadow card-hover animate-fade-in">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-semibold text-lg">Perbandingan Mata Pelajaran</h3>
-                        <div class="text-primary text-sm cursor-pointer hover:underline">Semester Ini <i class="fa-solid fa-chevron-down ml-1 text-xs"></i></div>
-                    </div>
-                    <div class="w-full h-64 flex items-center justify-center">
-                        <svg width="200" height="200" viewBox="0 0 200 200" class="overflow-visible">
-                            <!-- Background circle -->
-                            <circle cx="100" cy="100" r="80" fill="none" stroke="#eee" stroke-width="16" />
-                            
-                            <!-- Math segment -->
-                            <circle cx="100" cy="100" r="80" fill="none" stroke="#6c5ce7" stroke-width="16" 
-                                    stroke-dasharray="251.2 125.6" stroke-dashoffset="0" stroke-linecap="round">
-                                <animate attributeName="stroke-dasharray" from="0 376.8" to="251.2 125.6" dur="1s" fill="freeze" />
-                            </circle>
-                            
-                            <!-- Physics segment -->
-                            <circle cx="100" cy="100" r="80" fill="none" stroke="#4cd964" stroke-width="16" 
-                                    stroke-dasharray="125.6 251.2" stroke-dashoffset="-251.2" stroke-linecap="round">
-                                <animate attributeName="stroke-dashoffset" from="-376.8" to="-251.2" dur="1s" fill="freeze" />
-                            </circle>
-                            
-                            <!-- Indonesian segment -->
-                            <circle cx="100" cy="100" r="80" fill="none" stroke="#ff9500" stroke-width="16" 
-                                    stroke-dasharray="62.8 314" stroke-dashoffset="-376.8" stroke-linecap="round">
-                                <animate attributeName="stroke-dashoffset" from="-439.6" to="-376.8" dur="1s" fill="freeze" />
-                            </circle>
-                            
-                            <!-- Legend -->
-                            <g transform="translate(20, 180)">
-                                <rect x="-5" y="10" width="12" height="12" fill="#6c5ce7" rx="2" />
-                                <text x="10" y="20" font-size="10" fill="#666">Matematika (60%)</text>
-                            </g>
-                            <g transform="translate(20, 195)">
-                                <rect x="-5" y="15" width="12" height="12" fill="#4cd964" rx="2" />
-                                <text x="10" y="25" font-size="10" fill="#666">Fisika (30%)</text>
-                            </g>
-                            <g transform="translate(110, 180)">
-                                <rect x="10" y="10" width="12" height="12" fill="#ff9500" rx="2" />
-                                <text x="25" y="20" font-size="10" fill="#666">B. Indonesia (15%)</text>
-                            </g>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+                <!-- Jadwal Hari Ini Section -->
+                <div class="glass-card w-full max-w-6xl p-8 rounded-2xl shadow-xl bg-white/10 backdrop-blur-md border border-white/20 text-white space-y-6">
+                <h3 class="text-2xl font-semibold text-black/80">Jadwal X RPL 1 Hari Ini</h3>
 
-            <!-- Quick Actions -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                <a href="/qr-scanner"><div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-1">
-                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-primary-dark transition duration-200">
-                        <i class="fa-solid fa-qrcode"></i>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Pelajaran 1 -->
+                    <div class="bg-white/30 p-4 rounded-xl shadow text-black space-y-2 relative">
+                    <h4 class="font-bold text-lg">Matematika</h4>
+                    <p class="text-sm opacity-80">07:30 - 09:30</p>
+                    <p class="text-sm opacity-60">Dwiki Mauliditya S.pd</p>
+                    <span class="absolute top-2 right-2 bg-indigo-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow">
+                        Kelas X
+                    </span>
                     </div>
-                    <div class="font-medium text-center group-hover:text-purple-600 transition duration-200">Scan QR</div>
-                    <div class="text-xs text-gray-500">Scan QR untuk presensi</div>
-                </div></a>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-1">
-                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-green-600 transition duration-200">
-                        <i class="fa-solid fa-file-export"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-green-500 transition duration-200">Unduh Laporan</div>
-                    <div class="text-xs text-gray-500">Unduh laporan kehadiran</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-2">
-                    <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-yellow-600 transition duration-200">
-                        <i class="fa-solid fa-envelope"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-yellow-500 transition duration-200">Kirim Izin</div>
-                    <div class="text-xs text-gray-500">Kirim izin sakit/izin</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-3">
-                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-blue-600 transition duration-200">
-                        <i class="fa-solid fa-calendar-check"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-blue-500 transition duration-200">Lihat Jadwal</div>
-                    <div class="text-xs text-gray-500">Lihat jadwal pelajaran</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-3">
-                    <div class="w-12 h-12 bg-slate-500 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-slate-600 transition duration-200">
-                    <i class="fa-solid fa-x"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-slate-500 transition duration-200">Absensi</div>
-                    <div class="text-xs text-gray-500">Lihat riwayat absensi</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-3">
-                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-blue-700 transition duration-200">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-inherit transition duration-200">Presensi</div>
-                    <div class="text-xs text-gray-500">Lihat riwayat kehadiran</div>
-               </div>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-3">
-                    <div class="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-emerald-700 transition duration-200">
-                    <i class="fa-solid fa-book-open"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-emerald-600 transition duration-200">Tugas</div>
-                    <div class="text-xs text-gray-500">Lihat daftar tugas</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center cursor-pointer transform transition duration-200 hover:-translate-y-1 hover:shadow-md group animate-fade-in animate-delay-3">
-                    <div class="w-12 h-12 bg-pink-600 rounded-lg flex items-center justify-center text-white text-xl mb-3 group-hover:bg-pink-700 transition duration-200">
-                    <i class="fa-solid fa-comments"></i>
-                    </div>
-                    <div class="font-medium text-center group-hover:text-pink-600 transition duration-200">Konsultasi</div>
-                    <div class="text-xs text-gray-500">Konsultasi ke guru</div>
-                </div>
 
-        </div>
-    </div>
+                    <!-- Pelajaran 2 -->
+                    <div class="bg-white/30 p-4 rounded-xl shadow text-black space-y-2 relative">
+                    <h4 class="font-bold text-lg">Sejarah</h4>
+                    <p class="text-sm opacity-80">10:00 - 11:30</p>
+                    <p class="text-sm opacity-60">Siti Nurjanah S.pd</p>
+                    <span class="absolute top-2 right-2 bg-indigo-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow">
+                        Kelas X
+                    </span>
+                    </div>
 
-    <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    
-    <!-- Real-time clock script -->
-    <script>
-        function updateClock() {
-            const now = new Date();
-            
-            // Format date
-            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            
-            const dayName = days[now.getDay()];
-            const date = now.getDate();
-            const monthName = months[now.getMonth()];
-            const year = now.getFullYear();
-            
-            document.getElementById('current-date').textContent = `${dayName}, ${date} ${monthName} ${year}`;
-            
-            // Format time
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            minutes = minutes < 10 ? '0'+minutes : minutes;
-            
-            document.getElementById('current-time').textContent = `${hours}:${minutes} WIB`;
-        }
-        
-        // Update clock immediately and then every minute
-        updateClock();
-        setInterval(updateClock, 60000);
-        
-        // Add hover effect to cards
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px)';
-                card.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.1)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-                card.style.boxShadow = '';
-            });
-        });
-    </script>
-</body>
-</html>
+                    <!-- Pelajaran 3 -->
+                    <div class="bg-white/30 p-4 rounded-xl shadow text-black space-y-2 relative">
+                    <h4 class="font-bold text-lg">Bahasa Inggris</h4>
+                    <p class="text-sm opacity-80">12:00 - 13:30</p>
+                    <p class="text-sm opacity-60">Ahmad Rafi Fadhilah S.pd</p>
+                    <span class="absolute top-2 right-2 bg-indigo-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow">
+                        Kelas X
+                    </span>
+                    </div>
+                    <!-- Pelajaran 4 -->
+                    <div class="bg-white/30 p-4 rounded-xl shadow text-black space-y-2 relative">
+                    <h4 class="font-bold text-lg">Pemrograman Dasar</h4>
+                    <p class="text-sm opacity-80">13:30 - 14:30</p>
+                    <p class="text-sm opacity-60">Komariah S.Kom</p>
+                    <span class="absolute top-2 right-2 bg-indigo-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow">
+                        Kelas X
+                    </span>
+                    </div>
+                </div>
+                        
