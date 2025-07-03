@@ -7,67 +7,67 @@
     <link rel="icon" href="/hadirify-logo.jpg" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        
+
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
-        
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes floatIn {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes fadeScale {
             0% { opacity: 0; transform: scale(0.94); }
             100% { opacity: 1; transform: scale(1); }
         }
-        
+
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
+
         @keyframes shimmer {
             0% { background-position: -1000px 0; }
             100% { background-position: 1000px 0; }
         }
-        
+
         /* Custom styles */
         body {
             font-family: 'Outfit', sans-serif;
             background-color: #f8fafc;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 90%, rgba(225, 232, 250, 0.4) 10%, transparent 20%),
                 radial-gradient(circle at 90% 10%, rgba(225, 232, 250, 0.4) 10%, transparent 20%);
             background-size: 100px 100px;
         }
-        
+
         .glass-card {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(6px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
-        
+
         .animated-card {
             animation: fadeScale 0.5s ease-out forwards;
         }
-        
+
         .card-gradient {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.95) 100%);
             border-top: 3px solid transparent;
             transition: all 0.3s ease;
         }
-        
+
         .nav-gradient {
             background: linear-gradient(135deg, #3a47a8 0%, #2d1a73 100%);
             background-size: 200% 200%;
             animation: gradientShift 15s ease infinite;
         }
-        
+
         .sidebar-item {
             position: relative;
             transition: all 0.2s ease;
@@ -75,28 +75,28 @@
             margin-right: 8px;
             border-left: 3px solid transparent;
         }
-        
+
         .sidebar-item:hover {
             background-color: rgba(255, 255, 255, 0.15);
             border-left-color: #ffcc29;
         }
-        
+
         .active-sidebar-item {
             background-color: rgba(255, 255, 255, 0.12);
             border-left-color: #ffcc29;
         }
-        
+
         .profile-badge {
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
         }
-        
+
         .progress-bar {
             position: relative;
             height: 6px;
             overflow: hidden;
             border-radius: 6px;
         }
-        
+
         .progress-bar::after {
             content: '';
             position: absolute;
@@ -108,40 +108,40 @@
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
         }
-        
+
         .badge-anim {
             animation: pulse 2s infinite;
         }
-        
+
         .stat-icon {
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
         }
-        
+
         .label-style {
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-        
+
         .chart-animate {
             animation: slideUp 0.8s ease-out forwards;
         }
-        
+
         .floating-button {
             transition: all 0.3s ease;
             transform-origin: center;
         }
-        
+
         .floating-button:hover {
             transform: translateY(-4px) scale(1.05);
         }
-        
+
         .card-accent {
             position: relative;
             overflow: hidden;
         }
-        
+
         .card-accent::before {
             content: '';
             position: absolute;
@@ -153,24 +153,24 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .card-accent:hover::before {
             opacity: 1;
         }
-        
+
         .schedule-item {
             transition: all 0.2s ease;
         }
-        
+
         .schedule-item:hover {
             padding-left: 12px;
         }
-        
+
         .time-badge {
             background: #edf1fd;
             font-variant-numeric: tabular-nums;
         }
-        
+
         .custom-scroll::-webkit-scrollbar {
             width: 6px;
         }
@@ -184,26 +184,26 @@
             background-color: rgba(58, 71, 168, 0.3);
             border-radius: 10px;
         }
-        
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.8; }
         }
-        
+
         .animate-float-1 {
             animation: floatIn 0.5s ease-out forwards;
         }
-        
+
         .animate-float-2 {
             animation: floatIn 0.5s ease-out 0.1s forwards;
             opacity: 0;
         }
-        
+
         .animate-float-3 {
             animation: floatIn 0.5s ease-out 0.2s forwards;
             opacity: 0;
         }
-        
+
         .animate-float-4 {
             animation: floatIn 0.5s ease-out 0.3s forwards;
             opacity: 0;
@@ -212,7 +212,7 @@
 </head>
 <body class="text-gray-800">
     <div class="flex min-h-screen">
-    
+
         <div class="nav-gradient text-white w-64 flex flex-col shadow-lg transform transition-all duration-500 ease-in-out z-20">
             <div class="p-5 flex items-center border-b border-indigo-900/20 animate-float-1">
                 <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center">
@@ -229,7 +229,7 @@
                     </svg>
                     <span class="ml-3">Dashboard</span>
                 </div>
-                <a href="/qr-scanner"> 
+                <a href="/qr-scanner">
                    <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-2">
                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2V5h1v1H5zM3 13a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3zm2 2v-1h1v1H5zM13 3a1 1 0 00-1 1v3a1 1 0 001 1h3a1 1 0 001-1V4a1 1 0 00-1-1h-3zm1 2v1h1V5h-1z" clip-rule="evenodd" />
@@ -266,13 +266,13 @@
                     <span class="ml-3">Hukuman</span>
                 </div>
                 </a>
-               <a href="/profile"> 
+               <a href="/profile">
                    <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
                         </svg>
                         <span class="ml-3">Pengaturan</span>
-                    </div> 
+                    </div>
                 </a>
                 <a href="/pilihanguru">
                 <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
@@ -282,14 +282,14 @@
                     <span class="ml-3">Konsultasi</span>
                 </div>
                 </a>
-                
+
                 <div class="mt-4 mb-4 mx-3 border-t border-indigo-900/20"></div>
-                
-           
+
+
                 <div class="mb-2 px-5">
                     <p class="text-xs font-medium text-indigo-100/60 tracking-wider uppercase">Info Sekolah</p>
                 </div>
-                
+
                 <div class="sidebar-item flex items-center px-5 py-3 cursor-pointer mb-1 animate-float-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
@@ -311,7 +311,7 @@
                     <span class="ml-3">Jadwal</span>
             </div>
             </div>
-           
+
             <div class="px-4 py-4 bg-indigo-900/20 mt-auto">
                 <div class="flex items-center">
                     <div class="relative mr-3 animate-float-1">
@@ -396,7 +396,7 @@
             <!-- DASHBOARD CONTENT -->
             <div class="p-6">
                 <h1 class="text-2xl font-bold mb-6 animate-float-1">Selamat Datang, Rai!</h1>
-                
+
                 <!-- Stats Cards Row -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <!-- Card 1 -->
@@ -489,4 +489,3 @@
                     </span>
                     </div>
                 </div>
-                        
