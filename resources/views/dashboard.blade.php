@@ -445,7 +445,7 @@
                     </div>
                 </div>
 
-                <!-- Jadwal Hari Ini Section -->
+                <!-- Jadwal Hari Ini -->
                 <div class="glass-card w-full max-w-6xl p-8 rounded-2xl shadow-xl bg-white/10 backdrop-blur-md border border-white/20 text-white space-y-6">
                 <h3 class="text-2xl font-semibold text-black/80">Jadwal X RPL 1 Hari Ini</h3>
 
