@@ -6,19 +6,23 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-<<<<<<< HEAD
-=======
     return view('homepage');
-})->name('homepage');      
+})->name('homepage');
 
 // Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', function () {
->>>>>>> bcf2ed190461a0bc9be00460bca9e7846f91a7d2
     return view('login');
 })->name('login');
 
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
 Route::post('login', [AuthController::class, 'login'])
 ->name('post.login');
+
+Route::post('register', [AuthController::class, 'register'])
+->name('post.register');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

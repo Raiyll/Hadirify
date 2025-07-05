@@ -31,54 +31,58 @@ class AuthController extends Controller
             'name' => 'The provided credentials do not match our records.',
         ]);
     }
+
+    function register(Request $request) {
+        dd($request);
+    }
 }
-    
+
 class AttendanceController extends Controller
 {
     public function showQRScanner()
     {
         $user = Auth::user();
         $todayAttendance = $user->attendances()->whereDate('created_at', today())->first();
-        
+
         return view('attendance.qr-scanner', [
             'user' => $user,
             'todayAttendance' => $todayAttendance,
         ]);
     }
-    
+
     public function processScan(Request $request)
     {
         $request->validate([
             'qr_data' => 'required|string',
         ]);
-        
+
         $user = Auth::user();
         $qrData = json_decode($request->qr_data, true);
-        
+
         if (!$qrData || !isset($qrData['location_id'])) {
             return back()->with('error', 'QR Code tidak valid');
         }
-        
+
         if ($user->attendances()->whereDate('created_at', today())->exists()) {
             return back()->with('error', 'Anda sudah melakukan presensi hari ini');
         }
- 
+
         $attendance = $user->attendances()->create([
             'location_id' => $qrData['location_id'],
             'check_in' => now(),
-            'status' => 'on_time', 
+            'status' => 'on_time',
         ]);
-        
+
         return redirect()->route('dashboard')
                ->with('success', 'Presensi berhasil dicatat: ' . $attendance->check_in);
     }
-    
+
     public function history()
     {
         $attendances = Auth::user()->attendances()
                          ->orderBy('created_at', 'desc')
                          ->paginate(10);
-        
+
         return view('attendance.history', compact('attendances'));
     }
 }
